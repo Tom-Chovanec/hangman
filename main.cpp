@@ -7,13 +7,15 @@ bool stringContainsChar(std::string str, char c);
 
 int main() {
     string word = "apple";
-    string guess = '';
+    string guess = "";
+    char a;
     while (guess != word)  {
         for (int i = 0; i < word.size(); i++) {
             if (!stringContainsChar(guess, word[i])) cout << "_";
             else cout << word[i];
         }
-        cin >> guess;
+        cin >> a;
+        guess += a;
 
     }
 }
