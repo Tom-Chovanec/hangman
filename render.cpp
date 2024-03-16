@@ -1,4 +1,5 @@
 #include "iostream"
+#include <thread>
 using namespace std;
 
 enum HangmanStage {
@@ -17,6 +18,12 @@ enum HangmanStage {
     STAGE_10
 };
 
+//TODO: make a UI
+//      center everything
+//      put the hangman in a box?
+//      restart menu
+//      single/multiplayer option menu
+//      difficulty selector
 
 void renderAscii(unsigned int a)
 {
@@ -24,6 +31,80 @@ void renderAscii(unsigned int a)
     {
     case 1:
         // Hangman Title Text
+        std::this_thread::sleep_for(std::chrono::milliseconds(400));
+
+        cout << R"( _   _ )" << "\n";
+        cout << R"(| | | |)" << "\n";
+        cout << R"(| |_| |)" << "\n";
+        cout << R"(|  _  |)" << "\n";
+        cout << R"(| | | |)" << "\n";
+        cout << R"(\_| |_/)" << "\n";
+        cout << R"(       )" << "\n";
+        cout << R"(       )" << "\n";
+
+        std::this_thread::sleep_for(std::chrono::milliseconds(400));
+        system("cls");
+
+        cout << R"( _   _       )" << "\n";
+        cout << R"(| | | |      )" << "\n";
+        cout << R"(| |_| | __ _ )" << "\n";
+        cout << R"(|  _  |/ _` |)" << "\n";
+        cout << R"(| | | | (_| |)" << "\n";
+        cout << R"(\_| |_/\__,_|)" << "\n";
+        cout << R"(             )" << "\n";
+        cout << R"(             )" << "\n";
+
+        std::this_thread::sleep_for(std::chrono::milliseconds(400));
+        system("cls");
+
+        cout << R"( _   _             )" << "\n";
+        cout << R"(| | | |            )" << "\n";
+        cout << R"(| |_| | __ _ _ __  )" << "\n";
+        cout << R"(|  _  |/ _` | '_ \ )" << "\n";
+        cout << R"(| | | | (_| | | | |)" << "\n";
+        cout << R"(\_| |_/\__,_|_| |_|)" << "\n";
+        cout << R"(                   )" << "\n";
+        cout << R"(                   )" << "\n";
+
+        std::this_thread::sleep_for(std::chrono::milliseconds(400));
+        system("cls");
+
+        cout << R"( _   _                   )" << "\n";
+        cout << R"(| | | |                  )" << "\n";
+        cout << R"(| |_| | __ _ _ __   __ _ )" << "\n";
+        cout << R"(|  _  |/ _` | '_ \ / _` |)" << "\n";
+        cout << R"(| | | | (_| | | | | (_| |)" << "\n";
+        cout << R"(\_| |_/\__,_|_| |_|\__, |)" << "\n";
+        cout << R"(                    __/ |)" << "\n";
+        cout << R"(                   |___/ )" << "\n";
+
+        std::this_thread::sleep_for(std::chrono::milliseconds(400));
+        system("cls");
+
+        cout << R"( _   _                             )" << "\n";
+        cout << R"(| | | |                            )" << "\n";
+        cout << R"(| |_| | __ _ _ __   __ _ _ __ ___  )" << "\n";
+        cout << R"(|  _  |/ _` | '_ \ / _` | '_ ` _ \ )" << "\n";
+        cout << R"(| | | | (_| | | | | (_| | | | | | |)" << "\n";
+        cout << R"(\_| |_/\__,_|_| |_|\__, |_| |_| |_|)" << "\n";
+        cout << R"(                    __/ |          )" << "\n";
+        cout << R"(                   |___/           )" << "\n";
+
+        std::this_thread::sleep_for(std::chrono::milliseconds(400));
+        system("cls");
+
+        cout << R"( _   _                                   )" << "\n";
+        cout << R"(| | | |                                  )" << "\n";
+        cout << R"(| |_| | __ _ _ __   __ _ _ __ ___   __ _ )" << "\n";
+        cout << R"(|  _  |/ _` | '_ \ / _` | '_ ` _ \ / _` |)" << "\n";
+        cout << R"(| | | | (_| | | | | (_| | | | | | | (_| |)" << "\n";
+        cout << R"(\_| |_/\__,_|_| |_|\__, |_| |_| |_|\__,_|)" << "\n";
+        cout << R"(                    __/ |                )" << "\n";
+        cout << R"(                   |___/                 )" << "\n";
+
+        std::this_thread::sleep_for(std::chrono::milliseconds(400));
+        system("cls");
+
         cout << R"( _   _                                         )" << "\n";
         cout << R"(| | | |                                        )" << "\n";
         cout << R"(| |_| | __ _ _ __   __ _ _ __ ___   __ _ _ __  )" << "\n";
@@ -32,20 +113,70 @@ void renderAscii(unsigned int a)
         cout << R"(\_| |_/\__,_|_| |_|\__, |_| |_| |_|\__,_|_| |_|)" << "\n";
         cout << R"(                    __/ |                      )" << "\n";
         cout << R"(                   |___/                       )" << "\n";
+        cout << "\n\n\n";
+
+        std::this_thread::sleep_for(std::chrono::milliseconds(400));
         break;
+
     case 2:
         // Hangman Victory Text
+        cout << R"(██╗   ██╗ ██████╗ ██╗   ██╗ )" << "\n";
+        cout << R"(╚██╗ ██╔╝██╔═══██╗██║   ██║ )" << "\n";
+        cout << R"( ╚████╔╝ ██║   ██║██║   ██║ )" << "\n";
+        cout << R"(  ╚██╔╝  ██║   ██║██║   ██║ )" << "\n";
+        cout << R"(   ██║   ╚██████╔╝╚██████╔╝ )" << "\n";
+        cout << R"(   ╚═╝    ╚═════╝  ╚═════╝  )" << "\n";
+
+        std::this_thread::sleep_for(std::chrono::seconds(1));
+        system("cls");
+
+        cout << R"(                               ██╗    ██╗ ██████╗ ███╗   ██╗)" << "\n";
+        cout << R"(                               ██║    ██║██╔═══██╗████╗  ██║)" << "\n";
+        cout << R"(                               ██║ █╗ ██║██║   ██║██╔██╗ ██║)" << "\n";
+        cout << R"(                               ██║███╗██║██║   ██║██║╚██╗██║)" << "\n";
+        cout << R"(                               ╚███╔███╔╝╚██████╔╝██║ ╚████║)" << "\n";
+        cout << R"(                                ╚══╝╚══╝  ╚═════╝ ╚═╝  ╚═══╝)" << "\n";
+
+        std::this_thread::sleep_for(std::chrono::seconds(1));
+        system("cls");
+
         cout << R"(██╗   ██╗ ██████╗ ██╗   ██╗    ██╗    ██╗ ██████╗ ███╗   ██╗)" << "\n";
         cout << R"(╚██╗ ██╔╝██╔═══██╗██║   ██║    ██║    ██║██╔═══██╗████╗  ██║)" << "\n";
         cout << R"( ╚████╔╝ ██║   ██║██║   ██║    ██║ █╗ ██║██║   ██║██╔██╗ ██║)" << "\n";
         cout << R"(  ╚██╔╝  ██║   ██║██║   ██║    ██║███╗██║██║   ██║██║╚██╗██║)" << "\n";
         cout << R"(   ██║   ╚██████╔╝╚██████╔╝    ╚███╔███╔╝╚██████╔╝██║ ╚████║)" << "\n";
         cout << R"(   ╚═╝    ╚═════╝  ╚═════╝      ╚══╝╚══╝  ╚═════╝ ╚═╝  ╚═══╝)" << "\n";
-        cout << "\n";
-
         break;
     case 3:
         // Hangman Loss Text
+        cout << R"(▓██   ██▓ ▒█████   █    ██   )" << "\n";
+        cout << R"( ▒██  ██▒▒██▒  ██▒ ██  ▓██▒  )" << "\n";
+        cout << R"(  ▒██ ██░▒██░  ██▒▓██  ▒██░  )" << "\n";
+        cout << R"(  ░ ▐██▓░▒██   ██░▓▓█  ░██░  )" << "\n";
+        cout << R"(  ░ ██▒▓░░ ████▓▒░▒▒█████▓   )" << "\n";
+        cout << R"(   ██▒▒▒ ░ ▒░▒░▒░ ░▒▓▒ ▒ ▒   )" << "\n";
+        cout << R"( ▓██ ░▒░   ░ ▒ ▒░ ░░▒░ ░ ░   )" << "\n";
+        cout << R"( ▒ ▒ ░░  ░ ░ ░ ▒   ░░░ ░ ░   )" << "\n";
+        cout << R"( ░ ░         ░ ░     ░       )" << "\n";
+        cout << R"( ░ ░                         )" << "\n";
+
+        std::this_thread::sleep_for(std::chrono::seconds(1));
+        system("cls");
+
+        cout << R"(                               ██▓     ▒█████    ██████ ▄▄▄█████▓   )" << "\n";
+        cout << R"(                              ▓██▒    ▒██▒  ██▒▒██    ▒ ▓  ██▒ ▓▒   )" << "\n";
+        cout << R"(                              ▒██░    ▒██░  ██▒░ ▓██▄   ▒ ▓██░ ▒░   )" << "\n";
+        cout << R"(                              ▒██░    ▒██   ██░  ▒   ██▒░ ▓██▓ ░    )" << "\n";
+        cout << R"(                              ░██████▒░ ████▓▒░▒██████▒▒  ▒██▒ ░    )" << "\n";
+        cout << R"(                              ░ ▒░▓  ░░ ▒░▒░▒░ ▒ ▒▓▒ ▒ ░  ▒ ░░      )" << "\n";
+        cout << R"(                              ░ ░ ▒  ░  ░ ▒ ▒░ ░ ░▒  ░ ░    ░       )" << "\n";
+        cout << R"(                                ░ ░   ░ ░ ░ ▒  ░  ░  ░    ░         )" << "\n";
+        cout << R"(                                  ░  ░    ░ ░        ░              )" << "\n";
+        cout << R"(                                                                    )" << "\n";
+
+        std::this_thread::sleep_for(std::chrono::seconds(1));
+        system("cls");
+
         cout << R"(▓██   ██▓ ▒█████   █    ██     ██▓     ▒█████    ██████ ▄▄▄█████▓   )" << "\n";
         cout << R"( ▒██  ██▒▒██▒  ██▒ ██  ▓██▒   ▓██▒    ▒██▒  ██▒▒██    ▒ ▓  ██▒ ▓▒   )" << "\n";
         cout << R"(  ▒██ ██░▒██░  ██▒▓██  ▒██░   ▒██░    ▒██░  ██▒░ ▓██▄   ▒ ▓██░ ▒░   )" << "\n";
@@ -56,9 +187,6 @@ void renderAscii(unsigned int a)
         cout << R"( ▒ ▒ ░░  ░ ░ ░ ▒   ░░░ ░ ░      ░ ░   ░ ░ ░ ▒  ░  ░  ░    ░         )" << "\n";
         cout << R"( ░ ░         ░ ░     ░            ░  ░    ░ ░        ░              )" << "\n";
         cout << R"( ░ ░                                                                )" << "\n";
-        cout << "\n";
-
-        // bloody is thematic. Thought we could do so it shows "YOU" and then "LOST", i'd just have to add an extra case and cut the thing in half
 
         break;
     case 4:
