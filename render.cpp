@@ -9,7 +9,12 @@ enum HangmanStage {
     STAGE_2,
     STAGE_3,
     STAGE_4,
-    STAGE_5
+    STAGE_5,
+    STAGE_6,
+    STAGE_7,
+    STAGE_8,
+    STAGE_9,
+    STAGE_10
 };
 
 
@@ -57,9 +62,24 @@ void renderAscii(unsigned int a)
 
         break;
     case 4:
-        // Stage 1 - No mistake
-        // TODO
-        // Wdym todo theres nothing to print at no mistakes 😭 checkmark? maybe smiley face
+        // Stage 1
+        cout << "\n";
+        cout << "\n";
+        cout << "\n";
+        cout << "\n";
+        cout << "\n";
+        cout << "\n";
+        cout << "\n";
+        cout << "\n";
+        cout << "\n";
+        cout << "\n";
+        cout << "\n";
+        cout << "\n";
+        cout << "\n";
+        cout << "\n";
+        cout << "\n";
+        cout << "\n";
+        cout << "\n";
         break;
     case 5:
         // Stage 2
