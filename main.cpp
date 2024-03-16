@@ -7,33 +7,60 @@ using namespace std;
 
 bool stringContainsChar(std::string str, char c);
 
-int main() {
+int main()
+{
+    system("chcp 65001");
+    system("cls");
+    string word = "apple";
+    string guess = "";
+    string output = "";
+    bool guessed = false;
+    char tmp;
+    int stage = 4;
     renderAscii(TITLE_TEXT);
     cout << "press ANY BUTTON to start\n";
     _getch();
-    string word = "apple";
-    string guess = "";
-    bool guessed = false;
-    char tmp;
-    while (!guessed)  {
+    system("cls");
+    while (!guessed) {
         guessed = true;
         for (int i = 0; i < word.size(); i++) {
-            if (!stringContainsChar(guess, word[i])) {
+            if (!stringContainsChar(guess, word[i]))
+            {
                 guessed = false;
-                cout << "_";
+                output += '_';
             }
-            else cout << word[i];
+            else
+                output += word[i];
         }
+        cout << "\n";
         if (guessed) {
-            cout << "\nYOU WON!";
+            cout << "YOU WON!";
             return 0;
         }
-        char tmp = _getch();
-        cout << "\n";
-        guess += tmp;
+        else if (stage > STAGE_10) {
+            cout << "YOU LOST!";
+            return 0;
+        }
+        
 
+        do {
+            renderAscii(stage);
+            cout << output;
+            tmp = _getch();
+            system("cls");
+            if (stringContainsChar(guess, tmp)) 
+                cout << "You already guessed that letter\n";
+            else break;
+        } while (stringContainsChar(guess, tmp));
+
+        if (!stringContainsChar(word, tmp))
+            stage++;
+        guess += tmp;
+        output = "";
     }
 }
-bool stringContainsChar(std::string str, char c) {
-    return str.find(c) != std::string::npos;
+
+
+bool stringContainsChar(string str, char c) {
+    return str.find(c) != string::npos;
 }
