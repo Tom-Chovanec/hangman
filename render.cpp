@@ -1,6 +1,18 @@
 #include "iostream"
 using namespace std;
 
+enum HangmanStage {
+    TITLE_TEXT,
+    VICTORY_TEXT,
+    LOSS_TEXT,
+    STAGE_1,
+    STAGE_2,
+    STAGE_3,
+    STAGE_4,
+    STAGE_5
+};
+
+
 void renderAscii(unsigned int a)
 {
     switch (a)
@@ -18,15 +30,15 @@ void renderAscii(unsigned int a)
         break;
     case 2:
         // Hangman Victory Text
-        // Add your victory text here
+        // TODO
         break;
     case 3:
         // Hangman Loss Text
-        // Add your loss text here
+        // TODO
         break;
     case 4:
         // Stage 1 - No mistake
-        // Add your stage 1 render here
+        // TODO
         break;
     case 5:
         // Stage 2
@@ -99,24 +111,24 @@ void renderAscii(unsigned int a)
         break;
     case 9:
         // Stage 6
-cout << R"(           _______________________       )" << "\n";
-cout << R"(          |███████████████████████)      )" << "\n";
-cout << R"(          |█|‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾|‾       )" << "\n";
-cout << R"(          |█|                   |        )" << "\n";
-cout << R"(          |█|                 /‾‾‾\      )" << "\n";
-cout << R"(          |█|                 \___/      )" << "\n";
-cout << R"(          |█|                 |   |      )" << "\n";
-cout << R"(          |█|                 |   |      )" << "\n";
-cout << R"(          |█|                 |   |      )" << "\n";
-cout << R"(          |█|                  ‾‾‾       )" << "\n";
-cout << R"(          |█|                            )" << "\n";
-cout << R"(          |█|                            )" << "\n";
-cout << R"(          |█|                            )" << "\n";
-cout << R"(          |█|                            )" << "\n";
-cout << R"(          |█|                            )" << "\n";
-cout << R"(__________|█|___________                 )" << "\n";
-cout << R"((██████████████████████)                 )" << "\n";
-cout << R"(‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾                 )" << "\n";
+        cout << R"(           _______________________       )" << "\n";
+        cout << R"(          |███████████████████████)      )" << "\n";
+        cout << R"(          |█|‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾|‾       )" << "\n";
+        cout << R"(          |█|                   |        )" << "\n";
+        cout << R"(          |█|                 /‾‾‾\      )" << "\n";
+        cout << R"(          |█|                 \___/      )" << "\n";
+        cout << R"(          |█|                 |   |      )" << "\n";
+        cout << R"(          |█|                 |   |      )" << "\n";
+        cout << R"(          |█|                 |   |      )" << "\n";
+        cout << R"(          |█|                  ‾‾‾       )" << "\n";
+        cout << R"(          |█|                            )" << "\n";
+        cout << R"(          |█|                            )" << "\n";
+        cout << R"(          |█|                            )" << "\n";
+        cout << R"(          |█|                            )" << "\n";
+        cout << R"(          |█|                            )" << "\n";
+        cout << R"(__________|█|___________                 )" << "\n";
+        cout << R"((██████████████████████)                 )" << "\n";
+        cout << R"(‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾                 )" << "\n";
         break;
     case 10:
         // Stage 7

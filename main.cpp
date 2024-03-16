@@ -8,7 +8,7 @@ using namespace std;
 bool stringContainsChar(std::string str, char c);
 
 int main() {
-    renderAscii(1);
+    renderAscii(TITLE_TEXT);
     cout << "press ANY BUTTON to start\n";
     _getch();
     string word = "apple";
