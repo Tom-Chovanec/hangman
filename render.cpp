@@ -2,9 +2,9 @@
 using namespace std;
 
 enum HangmanStage {
-    TITLE_TEXT,
-    VICTORY_TEXT,
-    LOSS_TEXT,
+    TITLE = 1,
+    VICTORY,
+    LOSS,
     STAGE_1,
     STAGE_2,
     STAGE_3,
@@ -63,6 +63,7 @@ void renderAscii(unsigned int a)
         break;
     case 4:
         // Stage 1
+        cout << "\n";
         cout << "\n";
         cout << "\n";
         cout << "\n";

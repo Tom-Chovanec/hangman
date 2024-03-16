@@ -11,13 +11,13 @@ int main()
 {
     system("chcp 65001");
     system("cls");
-    string word = "apple";
+    string word = "qwe";
     string guess = "";
     string output = "";
     bool guessed = false;
     char tmp;
     int stage = 4;
-    renderAscii(TITLE_TEXT);
+    renderAscii(TITLE);
     cout << "press ANY BUTTON to start\n";
     _getch();
     system("cls");
@@ -34,11 +34,13 @@ int main()
         }
         cout << "\n";
         if (guessed) {
-            cout << "YOU WON!";
+            renderAscii(VICTORY);
+            _getch();
             return 0;
         }
         else if (stage > STAGE_10) {
-            cout << "YOU LOST!";
+            renderAscii(LOSS);
+            _getch();
             return 0;
         }
         
