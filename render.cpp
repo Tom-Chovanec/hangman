@@ -1,5 +1,6 @@
 #include "iostream"
 #include <thread>
+#include <conio.h>
 using namespace std;
 
 enum HangmanStage {
@@ -29,8 +30,7 @@ void renderAscii(unsigned int a)
 {
     switch (a)
     {
-    case 1:
-        // Hangman Title Text
+    case TITLE:
         std::this_thread::sleep_for(std::chrono::milliseconds(400));
 
         cout << R"( _   _ )" << "\n";
@@ -116,10 +116,10 @@ void renderAscii(unsigned int a)
         cout << "\n\n\n";
 
         std::this_thread::sleep_for(std::chrono::milliseconds(400));
+        while (_kbhit()) _getch();
         break;
 
-    case 2:
-        // Hangman Victory Text
+    case VICTORY:
         cout << R"(██╗   ██╗ ██████╗ ██╗   ██╗ )" << "\n";
         cout << R"(╚██╗ ██╔╝██╔═══██╗██║   ██║ )" << "\n";
         cout << R"( ╚████╔╝ ██║   ██║██║   ██║ )" << "\n";
@@ -146,9 +146,9 @@ void renderAscii(unsigned int a)
         cout << R"(  ╚██╔╝  ██║   ██║██║   ██║    ██║███╗██║██║   ██║██║╚██╗██║)" << "\n";
         cout << R"(   ██║   ╚██████╔╝╚██████╔╝    ╚███╔███╔╝╚██████╔╝██║ ╚████║)" << "\n";
         cout << R"(   ╚═╝    ╚═════╝  ╚═════╝      ╚══╝╚══╝  ╚═════╝ ╚═╝  ╚═══╝)" << "\n";
+        while (_kbhit()) _getch();
         break;
-    case 3:
-        // Hangman Loss Text
+    case LOSS:
         cout << R"(▓██   ██▓ ▒█████   █    ██   )" << "\n";
         cout << R"( ▒██  ██▒▒██▒  ██▒ ██  ▓██▒  )" << "\n";
         cout << R"(  ▒██ ██░▒██░  ██▒▓██  ▒██░  )" << "\n";
@@ -187,31 +187,32 @@ void renderAscii(unsigned int a)
         cout << R"( ▒ ▒ ░░  ░ ░ ░ ▒   ░░░ ░ ░      ░ ░   ░ ░ ░ ▒  ░  ░  ░    ░         )" << "\n";
         cout << R"( ░ ░         ░ ░     ░            ░  ░    ░ ░        ░              )" << "\n";
         cout << R"( ░ ░                                                                )" << "\n";
+        while (_kbhit()) _getch();
+        break;
 
+    case STAGE_1:
+        cout << "\n";
+        cout << "\n";
+        cout << "\n";
+        cout << "\n";
+        cout << "\n";
+        cout << "\n";
+        cout << "\n";
+        cout << "\n";
+        cout << "\n";
+        cout << "\n";
+        cout << "\n";
+        cout << "\n";
+        cout << "\n";
+        cout << "\n";
+        cout << "\n";
+        cout << "\n";
+        cout << "\n";
+        cout << "\n";
+        while (_kbhit()) _getch();
         break;
-    case 4:
-        // Stage 1
-        cout << "\n";
-        cout << "\n";
-        cout << "\n";
-        cout << "\n";
-        cout << "\n";
-        cout << "\n";
-        cout << "\n";
-        cout << "\n";
-        cout << "\n";
-        cout << "\n";
-        cout << "\n";
-        cout << "\n";
-        cout << "\n";
-        cout << "\n";
-        cout << "\n";
-        cout << "\n";
-        cout << "\n";
-        cout << "\n";
-        break;
-    case 5:
-        // Stage 2
+
+    case STAGE_2:
         cout << "\n";
         cout << "\n";
         cout << "\n";
@@ -229,9 +230,10 @@ void renderAscii(unsigned int a)
         cout << R"(________________________)" << "\n";
         cout << R"((██████████████████████))" << "\n";
         cout << R"(‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾)" << "\n";
+        while (_kbhit()) _getch();
         break;
-    case 6:
-        // Stage 3
+
+    case STAGE_3:
         cout << R"(          ___           )" << "\n";
         cout << R"(          |█|           )" << "\n";
         cout << R"(          |█|           )" << "\n";
@@ -250,9 +252,10 @@ void renderAscii(unsigned int a)
         cout << R"(__________|█|___________)" << "\n";
         cout << R"((██████████████████████))" << "\n";
         cout << R"(‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾)" << "\n";
+        while (_kbhit()) _getch();
         break;
-    case 7:
-        // Stage 4
+
+    case STAGE_4:
         cout << R"(           _______________________   )" << "\n";
         cout << R"(          |███████████████████████)  )" << "\n";
         cout << R"(          |█|‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾   )" << "\n";
@@ -271,9 +274,10 @@ void renderAscii(unsigned int a)
         cout << R"(__________|█|___________             )" << "\n";
         cout << R"((███████████████████████)            )" << "\n";
         cout << R"(‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾             )" << "\n";
+        while (_kbhit()) _getch();
         break;
-    case 8:
-        // Stage 5
+
+    case STAGE_5:
         cout << R"(           _______________________   )" << "\n";
         cout << R"(          |███████████████████████)  )" << "\n";
         cout << R"(          |█|‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾|‾   )" << "\n";
@@ -292,9 +296,10 @@ void renderAscii(unsigned int a)
         cout << R"(__________|█|___________             )" << "\n";
         cout << R"((██████████████████████)             )" << "\n";
         cout << R"(‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾             )" << "\n";
+        while (_kbhit()) _getch();
         break;
-    case 9:
-        // Stage 6
+        
+    case STAGE_6:
         cout << R"(           _______________________       )" << "\n";
         cout << R"(          |███████████████████████)      )" << "\n";
         cout << R"(          |█|‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾|‾       )" << "\n";
@@ -313,9 +318,10 @@ void renderAscii(unsigned int a)
         cout << R"(__________|█|___________                 )" << "\n";
         cout << R"((██████████████████████)                 )" << "\n";
         cout << R"(‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾                 )" << "\n";
+        while (_kbhit()) _getch();
         break;
-    case 10:
-        // Stage 7
+
+    case STAGE_7:
         cout <<R"(           _______________________    )" << "\n";
         cout <<R"(          |███████████████████████)   )" << "\n";
         cout <<R"(          |█|‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾|‾    )" << "\n";
@@ -334,9 +340,10 @@ void renderAscii(unsigned int a)
         cout <<R"(__________|█|___________              )" << "\n";
         cout <<R"((██████████████████████)              )" << "\n";
         cout <<R"(‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾              )" << "\n";
+        while (_kbhit()) _getch();
         break;
-    case 11:
-        // Stage 8
+
+    case STAGE_8:
         cout << R"(           _______________________       )" << "\n";
         cout << R"(          |███████████████████████)      )" << "\n";
         cout << R"(          |█|‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾|‾       )" << "\n";
@@ -355,9 +362,10 @@ void renderAscii(unsigned int a)
         cout << R"(__________|█|___________                 )" << "\n";
         cout << R"((██████████████████████)                 )" << "\n";
         cout << R"(‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾                 )" << "\n";
+        while (_kbhit()) _getch();
         break;
-    case 12:
-        // Stage 9
+
+    case STAGE_9:
         cout << R"(           _______________________       )" << "\n";
         cout << R"(          |███████████████████████)      )" << "\n";
         cout << R"(          |█|‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾|‾       )" << "\n";
@@ -376,9 +384,10 @@ void renderAscii(unsigned int a)
         cout << R"(__________|█|___________                 )" << "\n";
         cout << R"((██████████████████████)                 )" << "\n";
         cout << R"(‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾                 )" << "\n";
+        while (_kbhit()) _getch();
         break;
-    case 13:
-        // Stage 10 (clean)
+
+    case STAGE_10:
         cout << R"(           _______________________       )" << "\n";
         cout << R"(          |███████████████████████)      )" << "\n";
         cout << R"(          |█|‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾|‾       )" << "\n";
@@ -397,7 +406,9 @@ void renderAscii(unsigned int a)
         cout << R"(__________|█|___________                 )" << "\n";
         cout << R"((██████████████████████)                 )" << "\n";
         cout << R"(‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾                 )" << "\n";
+        while (_kbhit()) _getch();
         break;
+
     default:
         break;
     }

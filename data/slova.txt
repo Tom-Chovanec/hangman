@@ -37,7 +37,6 @@ tanec
 voda
 škola
 kosti
-lano
 cesta
 ovca
 rieka
@@ -51,19 +50,12 @@ kocka
 prst
 vrch
 pokoj
-hviezda
-noc
-olovo
 strecha
 kladivo
 plot
 hokej
-dvere
 okno
-ryba
 kava
-hrad
-slon
 most
 klobasa
 deka
