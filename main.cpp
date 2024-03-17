@@ -8,6 +8,13 @@ using namespace std;
 
 bool stringContainsChar(std::string str, char c);
 
+//TODO
+//    load words from a file (english and slovak)
+//    add logic for all the different menus
+//    singleplayer/multiplayer mode
+//
+//
+
 int main()
 {
     system("chcp 65001");
