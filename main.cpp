@@ -22,7 +22,7 @@ int main()
     _getch();
     system("cls");
     while (true) {
-        string word = NahodneSlovo(nacitajSlova("data/slova.txt"));
+        string word = NahodneSlovo(nacitajSlova("data/slova.txt")); // TODO : add toggle between eng and sk
         while(!guessed) {
             guessed = true;
             for (int i = 0; i < word.size(); i++) {
@@ -35,11 +35,11 @@ int main()
                     output += word[i];
             }
             if (guessed) {
-                renderAscii(VICTORY);
+                renderAscii(VICTORY_SK);
                 break;
             }
             else if (stage > STAGE_10) {
-                renderAscii(LOSS);
+                renderAscii(LOSS_SK);
                 break;
             }
 
