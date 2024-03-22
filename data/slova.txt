@@ -66,3 +66,5 @@ čaj
 rum
 vodka
 whisky
+staroba
+mechur
