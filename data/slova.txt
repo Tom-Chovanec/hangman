@@ -68,3 +68,4 @@ vodka
 whisky
 staroba
 mechur
+tuberkuloza
