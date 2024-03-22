@@ -7,39 +7,58 @@
 using namespace std;
 
 bool stringContainsChar(std::string str, char c);
+bool isLetter(char c);
 
-int main()
-{
+enum language {
+    EN,
+    SK
+};
+
+int main() {
     system("chcp 65001");
     system("cls");
     string guess = "";
     string output = "";
+    string word = "";
+    language lang = EN;
     bool guessed = false;
     char tmp;
-    int stage = 4;
+    int stage = STAGE_1;
+
     renderAscii(TITLE);
-    cout << "press ANY BUTTON to start\n";
+    if (lang == EN) cout << "press ANY BUTTON to start\n";
+    else cout << "stlačte ľubovolnú klávesu pre začatie\n";
+
     _getch();
     system("cls");
+
     while (true) {
-        string word = NahodneSlovo(nacitajSlova("data/slova.txt")); // TODO : add toggle between eng and sk
+        cout << "choose a language(e/s)\n";
+        tmp = _getch();
+        if (tmp == 'e') lang = EN;
+        else if (tmp == 's') lang = SK;
+        else continue;
+
+        if (lang == EN) word = NahodneSlovo(nacitajSlova("data/words.txt"));
+        else word = NahodneSlovo(nacitajSlova("data/slova.txt"));
+        
         while(!guessed) {
             guessed = true;
             for (int i = 0; i < word.size(); i++) {
-                if (!stringContainsChar(guess, word[i]))
-                {
+                if (!stringContainsChar(guess, word[i])) {
                     guessed = false;
                     output += '_';
                 }
-                else
-                    output += word[i];
+                else output += word[i];
             }
             if (guessed) {
-                renderAscii(VICTORY_SK);
+                if (lang == EN) renderAscii(VICTORY_EN);
+                else renderAscii(VICTORY_SK);
                 break;
             }
             else if (stage > STAGE_10) {
-                renderAscii(LOSS_SK);
+                if (lang == EN) renderAscii(LOSS_EN);
+                else renderAscii(LOSS_SK);
                 break;
             }
 
@@ -48,23 +67,34 @@ int main()
                 cout << output;
                 tmp = _getch();
                 system("cls");
-                if (stringContainsChar(guess, tmp)) 
-                    cout << "You already guessed that letter\n";
+
+                if (stringContainsChar(guess, tmp)) {
+                    if (lang == EN) cout << "You already guessed that letter\n";
+                    else cout << "Už si hádal toto písmeno\n";
+                } 
+                else if (isLetter(tmp)) continue;
                 else break;
             } while (stringContainsChar(guess, tmp));
 
-            if (!stringContainsChar(word, tmp))
-                stage++;
+            if (!stringContainsChar(word, tmp)) stage++;
             guess += tmp;
             output = "";
         }
+
         std::this_thread::sleep_for(std::chrono::milliseconds(1000));
-        cout << "\nThe word was: " << word << "\n";
-        cout << "Do you want to play again? (y/n)\n";
+
+        if (lang == EN) {
+            cout << "The word was: " << word << "\n";
+            cout << "Do you want to play again? (y/n)\n";
+        } else {
+            cout << "Slovo bolo: " << word << "\n";
+            cout << "Chcete hrať znova? (y/n)\n";
+        }
+        
         while (true) {
             tmp = _getch();
             if (tmp == 'n') return 0;
-            else if (tmp == 'y'){
+            else if (tmp == 'y') {
                 guessed = false;
                 stage = STAGE_1;
                 guess = "";
@@ -73,11 +103,14 @@ int main()
                 break;
             }
         }
-        
     }
 }
 
 
 bool stringContainsChar(string str, char c) {
     return str.find(c) != string::npos;
+}
+
+bool isLetter(char c) {
+    return (c >= 'a' && c <= 'z') || (c >= 'A' && c <= 'Z');
 }
