@@ -14,8 +14,8 @@ bool isLetter(char c);
 void clearConsole();
 
 enum language {
-    EN,
-    SK
+    EN = 2,
+    SK = 12
 };
 
 enum playmode {
@@ -29,15 +29,15 @@ int main() {
     string guess = "";
     string output = "";
     playmode mode = SINGLEPLAYER;
-    int base = 5;
+    int difficulty = 0;
+    int base = EN;
     HangmanStage menuStage = static_cast<HangmanStage>(base);
     string word = "";
-    language lang = EN;
     bool guessed = false;
     bool isRunning = true;
     char tmp;
     int stage = STAGE_1;
-    int x = 0;
+    int x = 0, y = 0;
 
     renderAscii(TITLE);
  
@@ -53,17 +53,68 @@ int main() {
                     isRunning = false;
                     break;
                 }
+                if (menuStage == TITLE_EN_SETTINGS || menuStage == TITLE_SK_SETTINGS) {
+                    menuStage = static_cast<HangmanStage>(3 + base);
+                    x = 0;
+                }
             }
-            if (GetAsyncKeyState(VK_RIGHT)) {
-                x++;
-                if (x == 3) x = 0;
-                menuStage = static_cast<HangmanStage>(base + x);
+            if (menuStage == TITLE_EN_PLAY || menuStage == TITLE_SK_PLAY || menuStage == TITLE_EN_QUIT || menuStage == TITLE_SK_QUIT || menuStage == TITLE_EN_SETTINGS || menuStage == TITLE_SK_SETTINGS) {
+                if (GetAsyncKeyState(VK_RIGHT)) {
+                    x++;
+                    if (x == 3) x = 0;
+                    menuStage = static_cast<HangmanStage>(base + x);
+                }
+                if (GetAsyncKeyState(VK_LEFT)) {
+                    x--;
+                    if (x == -1) x = 2;
+                    menuStage = static_cast<HangmanStage>(base + x);
+                }
+            } else {
+                if (tmp == '\r') {
+                    if (menuStage == SETTINGS_EN_PLAY_SP || menuStage == SETTINGS_SK_PLAY_SP) mode = SINGLEPLAYER;
+                    if (menuStage == SETTINGS_EN_PLAY_MP || menuStage == SETTINGS_SK_PLAY_MP) mode = MULTIPLAYER;
+                    if (menuStage == SETTINGS_EN_LANG_EN || menuStage == SETTINGS_SK_LANG_EN)  {
+                        base = EN;
+                        menuStage = static_cast<HangmanStage>(base + 6);
+                        continue;
+                    }
+                    if (menuStage == SETTINGS_EN_LANG_SK || menuStage == SETTINGS_SK_LANG_SK) {
+                        base = SK;
+                        menuStage = static_cast<HangmanStage>(base + 5);
+                        continue;
+                    }
+
+                    if (menuStage == SETTINGS_EN_DIFF_EASY || menuStage == SETTINGS_SK_DIFF_EASY) difficulty = 0;
+                    if (menuStage == SETTINGS_EN_DIFF_HARD || menuStage == SETTINGS_SK_DIFF_HARD) difficulty = 1;
+                    if (menuStage == SETTINGS_EN_EXIT || menuStage == SETTINGS_SK_EXIT) {
+                        menuStage = static_cast<HangmanStage>(static_cast<int>(menuStage) - 9);  
+                        y = 0;
+                    }   
+                }
+                if (GetAsyncKeyState(VK_RIGHT)) {
+                    y++;
+                    if (y == 7 ) y = 0;
+                    menuStage = static_cast<HangmanStage>(base + 3 + y);
+                }
+                if (GetAsyncKeyState(VK_LEFT)) {
+                    y--;
+                    if (y == -1) y = 6;
+                    menuStage = static_cast<HangmanStage>(base + 3 + y);
+                }
+                if (GetAsyncKeyState(VK_UP)) {
+                    y -= 2;
+                    if (y < 0) y = 6;
+                    menuStage = static_cast<HangmanStage>(base + 3 + y);
+                }
+                if (GetAsyncKeyState(VK_DOWN)) {
+                    y += 2;
+                    if (y == 7) y = 6;
+                    if (y > 7) y = 0;
+                    menuStage = static_cast<HangmanStage>(base + 3 + y);
+                }
+
             }
-            if (GetAsyncKeyState(VK_LEFT)) {
-                x--;
-                if (x == -1) x = 2;
-                menuStage = static_cast<HangmanStage>(base + x);
-            }
+
         }
         if (!isRunning) break;
         if (mode == MULTIPLAYER) {
@@ -72,7 +123,7 @@ int main() {
             clearConsole();
         }
         else {
-            if (lang == EN) word = NahodneSlovo(nacitajSlova("data/words.txt"));
+            if (base == EN) word = NahodneSlovo(nacitajSlova("data/words.txt"));
             else word = NahodneSlovo(nacitajSlova("data/slova.txt"));
         }
         
@@ -86,11 +137,11 @@ int main() {
                 else output += word[i];
             }
             if (guessed) {
-                if (lang == EN) renderAscii(VICTORY_EN);
+                if (base == EN) renderAscii(VICTORY_EN);
                 else renderAscii(VICTORY_SK);
                 break;
             } else if (stage > STAGE_10) {
-                if (lang == EN) renderAscii(LOSS_EN);
+                if (base == EN) renderAscii(LOSS_EN);
                 else renderAscii(LOSS_SK);
                 break;
             }
@@ -103,7 +154,7 @@ int main() {
 
                 if (!isLetter(tmp)) continue;
                 else if (stringContainsChar(guess, tmp)) {
-                    if (lang == EN) cout << "You already guessed that letter\n";
+                    if (base == EN) cout << "You already guessed that letter\n";
                     else cout << "Už si hádal toto písmeno\n";
                 } 
                 else break;
@@ -144,11 +195,11 @@ void clearConsole() {
     hStdOut = GetStdHandle( STD_OUTPUT_HANDLE );
     if (hStdOut == INVALID_HANDLE_VALUE) return;
 
-    /* Get the number of cells in the current buffer */
+    
     if (!GetConsoleScreenBufferInfo( hStdOut, &csbi )) return;
     cellCount = csbi.dwSize.X *csbi.dwSize.Y;
 
-    /* Fill the entire buffer with spaces */
+    
     if (!FillConsoleOutputCharacter(
         hStdOut,
         (TCHAR) ' ',
@@ -157,7 +208,7 @@ void clearConsole() {
         &count
     )) return;
 
-    /* Fill the entire buffer with the current colors and attributes */
+    
     if (!FillConsoleOutputAttribute(
         hStdOut,
         csbi.wAttributes,
@@ -166,6 +217,6 @@ void clearConsole() {
         &count
     )) return;
 
-    /* Move the cursor home */
+    
     SetConsoleCursorPosition( hStdOut, homeCoords );
 }
