@@ -15,8 +15,23 @@ std::vector<std::string> nacitajSlova(const std::string& subor) {
     return slova;
 }
 
-std::string NahodneSlovo(const std::vector<std::string>& zoznam) {
-    srand(time(NULL));
-    int index = rand() % zoznam.size();
-    return zoznam[index];
+std::string NahodneSlovo(std::vector<std::string> slova, int difficulty) {
+    std::vector<std::string> filteredWords;
+
+    for (const auto& word : slova) {
+        if (difficulty == 0) {
+            if (word.length() < 5) {
+                filteredWords.push_back(word);
+            }
+        } else 
+        if (difficulty == 1) {
+            if (word.length() > 5) {
+                filteredWords.push_back(word);
+            }
+        }
+    }
+
+    int randomIndex = rand() % filteredWords.size();
+    return filteredWords[randomIndex];
+
 }

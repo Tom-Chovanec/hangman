@@ -46,6 +46,10 @@ int main() {
         while (isRunning) {
             clearConsole();
             renderAscii(menuStage);
+            if (word != "") {
+                if (base == EN) cout << "Last word was: " << word << endl;
+                else cout << "Posledné Slovo bolo:"  << word << endl;
+            } 
             tmp = _getch();
             if (tmp == '\r') {
                 if (menuStage == TITLE_EN_PLAY || menuStage == TITLE_SK_PLAY) break;
@@ -76,12 +80,10 @@ int main() {
                     if (menuStage == SETTINGS_EN_LANG_EN || menuStage == SETTINGS_SK_LANG_EN)  {
                         base = EN;
                         menuStage = static_cast<HangmanStage>(base + 6);
-                        continue;
                     }
                     if (menuStage == SETTINGS_EN_LANG_SK || menuStage == SETTINGS_SK_LANG_SK) {
                         base = SK;
                         menuStage = static_cast<HangmanStage>(base + 5);
-                        continue;
                     }
 
                     if (menuStage == SETTINGS_EN_DIFF_EASY || menuStage == SETTINGS_SK_DIFF_EASY) difficulty = 0;
@@ -120,13 +122,13 @@ int main() {
         if (mode == MULTIPLAYER) {
             cout << "Enter a word: ";
             cin >> word;
-            clearConsole();
-        }
-        else {
-            if (base == EN) word = NahodneSlovo(nacitajSlova("data/words.txt"));
-            else word = NahodneSlovo(nacitajSlova("data/slova.txt"));
+        } else {
+            if (base == EN) word = NahodneSlovo(nacitajSlova("data/words.txt"), difficulty);
+            else word = NahodneSlovo(nacitajSlova("data/slova.txt"), difficulty);
         }
         
+    clearConsole();
+
         while(!guessed) {
             guessed = true;
             for (int i = 0; i < word.size(); i++) {
@@ -195,11 +197,9 @@ void clearConsole() {
     hStdOut = GetStdHandle( STD_OUTPUT_HANDLE );
     if (hStdOut == INVALID_HANDLE_VALUE) return;
 
-    
     if (!GetConsoleScreenBufferInfo( hStdOut, &csbi )) return;
     cellCount = csbi.dwSize.X *csbi.dwSize.Y;
 
-    
     if (!FillConsoleOutputCharacter(
         hStdOut,
         (TCHAR) ' ',
@@ -208,7 +208,6 @@ void clearConsole() {
         &count
     )) return;
 
-    
     if (!FillConsoleOutputAttribute(
         hStdOut,
         csbi.wAttributes,
@@ -217,6 +216,5 @@ void clearConsole() {
         &count
     )) return;
 
-    
     SetConsoleCursorPosition( hStdOut, homeCoords );
 }
