@@ -1,6 +1,7 @@
 #include "iostream"
 #include <thread>
 #include <conio.h>
+#include "a.h"
 using namespace std;
 
 enum HangmanStage {
@@ -51,8 +52,6 @@ enum HangmanStage {
 };
 
 //TODO: make a UI
-//      center everything
-//      put the hangman in a box?
 //      restart menu
 //      single/multiplayer option menu  ??
 //      difficulty selector
@@ -91,7 +90,7 @@ void renderAscii(unsigned int a)
         cout << R"(╚═══════════════════════════════════════════════════════════════════════════════════════════╝)" << "\n";
         cout << R"()" << "\n";
         std::this_thread::sleep_for(std::chrono::milliseconds(400));
-        system("cls");
+        clearConsole();
 
         cout << R"()" << "\n";
         cout << R"(╔═══════════════════════════════════════════════════════════════════════════════════════════╗)" << "\n";
@@ -120,7 +119,7 @@ void renderAscii(unsigned int a)
         cout << R"(╚═══════════════════════════════════════════════════════════════════════════════════════════╝)" << "\n";
         cout << R"()" << "\n";
         std::this_thread::sleep_for(std::chrono::milliseconds(400));
-        system("cls");
+        clearConsole();
 
         cout << R"()" << "\n";
         cout << R"(╔═══════════════════════════════════════════════════════════════════════════════════════════╗)" << "\n";
@@ -149,7 +148,7 @@ void renderAscii(unsigned int a)
         cout << R"(╚═══════════════════════════════════════════════════════════════════════════════════════════╝)" << "\n";
         cout << R"()" << "\n";
         std::this_thread::sleep_for(std::chrono::milliseconds(400));
-        system("cls");
+        clearConsole();
 
         cout << R"()" << "\n";
         cout << R"(╔═══════════════════════════════════════════════════════════════════════════════════════════╗)" << "\n";
@@ -178,7 +177,7 @@ void renderAscii(unsigned int a)
         cout << R"(╚═══════════════════════════════════════════════════════════════════════════════════════════╝)" << "\n";
         cout << R"()" << "\n";
         std::this_thread::sleep_for(std::chrono::milliseconds(400));
-        system("cls");
+        clearConsole();
 
         cout << R"()" << "\n";
         cout << R"(╔═══════════════════════════════════════════════════════════════════════════════════════════╗)" << "\n";
@@ -207,7 +206,7 @@ void renderAscii(unsigned int a)
         cout << R"(╚═══════════════════════════════════════════════════════════════════════════════════════════╝)" << "\n";
         cout << R"()" << "\n";
         std::this_thread::sleep_for(std::chrono::milliseconds(400));
-        system("cls");
+        clearConsole();
 
         cout << R"()" << "\n";
         cout << R"(╔═══════════════════════════════════════════════════════════════════════════════════════════╗)" << "\n";
@@ -236,7 +235,7 @@ void renderAscii(unsigned int a)
         cout << R"(╚═══════════════════════════════════════════════════════════════════════════════════════════╝)" << "\n";
         cout << R"()" << "\n";
         std::this_thread::sleep_for(std::chrono::milliseconds(400));
-        system("cls");
+        clearConsole();
 
         cout << R"()" << "\n";
         cout << R"(╔═══════════════════════════════════════════════════════════════════════════════════════════╗)" << "\n";
@@ -265,7 +264,7 @@ void renderAscii(unsigned int a)
         cout << R"(╚═══════════════════════════════════════════════════════════════════════════════════════════╝)" << "\n";
         cout << R"()" << "\n";
         std::this_thread::sleep_for(std::chrono::milliseconds(400));
-        system("cls");
+        clearConsole();
 
         cout << R"()" << "\n";
         cout << R"(╔═══════════════════════════════════════════════════════════════════════════════════════════╗)" << "\n";
@@ -294,7 +293,7 @@ void renderAscii(unsigned int a)
         cout << R"(╚═══════════════════════════════════════════════════════════════════════════════════════════╝)" << "\n";
         cout << R"()" << "\n";
         std::this_thread::sleep_for(std::chrono::milliseconds(400));
-        system("cls");
+        clearConsole();
 
         cout << R"()" << "\n";
         cout << R"(╔═══════════════════════════════════════════════════════════════════════════════════════════╗)" << "\n";
@@ -1007,7 +1006,7 @@ void renderAscii(unsigned int a)
         cout << R"(╚═══════════════════════════════════════════════════════════════════════════════════════════╝)" << "\n";
         cout << R"()" << "\n";
         std::this_thread::sleep_for(std::chrono::seconds(1));
-        system("cls");
+        clearConsole();
 
         cout << R"()" << "\n";
         cout << R"(╔═══════════════════════════════════════════════════════════════════════════════════════════╗)" << "\n";
@@ -1036,7 +1035,7 @@ void renderAscii(unsigned int a)
         cout << R"(╚═══════════════════════════════════════════════════════════════════════════════════════════╝)" << "\n";
         cout << R"()" << "\n";
         std::this_thread::sleep_for(std::chrono::seconds(1));
-        system("cls");
+        clearConsole();
 
         cout << R"()" << "\n";
         cout << R"(╔═══════════════════════════════════════════════════════════════════════════════════════════╗)" << "\n";
@@ -1095,7 +1094,7 @@ void renderAscii(unsigned int a)
         cout << R"(╚═══════════════════════════════════════════════════════════════════════════════════════════╝)" << "\n";
         cout << R"()" << "\n";
         std::this_thread::sleep_for(std::chrono::seconds(1));
-        system("cls");
+        clearConsole();
 
         cout << R"()" << "\n";
         cout << R"(╔═══════════════════════════════════════════════════════════════════════════════════════════╗)" << "\n";
@@ -1124,7 +1123,7 @@ void renderAscii(unsigned int a)
         cout << R"(╚═══════════════════════════════════════════════════════════════════════════════════════════╝)" << "\n";
         cout << R"()" << "\n";
         std::this_thread::sleep_for(std::chrono::seconds(1));
-        system("cls");
+        clearConsole();
 
         cout << R"()" << "\n";
         cout << R"(╔═══════════════════════════════════════════════════════════════════════════════════════════╗)" << "\n";
@@ -1186,7 +1185,7 @@ void renderAscii(unsigned int a)
         cout << R"(╚═══════════════════════════════════════════════════════════════════════════════════════════╝)" << "\n";
         cout << R"()" << "\n";
         std::this_thread::sleep_for(std::chrono::seconds(1));
-        system("cls");
+        clearConsole();
 
         cout << R"()" << "\n";
         cout << R"(╔═══════════════════════════════════════════════════════════════════════════════════════════╗)" << "\n";
@@ -1215,7 +1214,7 @@ void renderAscii(unsigned int a)
         cout << R"(╚═══════════════════════════════════════════════════════════════════════════════════════════╝)" << "\n";
         cout << R"()" << "\n";
         std::this_thread::sleep_for(std::chrono::seconds(1));
-        system("cls");
+        clearConsole();
 
         cout << R"()" << "\n";
         cout << R"(╔═══════════════════════════════════════════════════════════════════════════════════════════╗)" << "\n";
@@ -1276,7 +1275,7 @@ void renderAscii(unsigned int a)
         cout << R"(╚═══════════════════════════════════════════════════════════════════════════════════════════╝)" << "\n";
         cout << R"()" << "\n";
         std::this_thread::sleep_for(std::chrono::seconds(1));
-        system("cls");
+        clearConsole();
 
         cout << R"()" << "\n";
         cout << R"(╔═══════════════════════════════════════════════════════════════════════════════════════════╗)" << "\n";
@@ -1306,7 +1305,7 @@ void renderAscii(unsigned int a)
         cout << R"()" << "\n";
 
         std::this_thread::sleep_for(std::chrono::seconds(1));
-        system("cls");
+        clearConsole();
 
         cout << R"()" << "\n";
         cout << R"(╔═══════════════════════════════════════════════════════════════════════════════════════════╗)" << "\n";
