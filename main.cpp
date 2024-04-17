@@ -3,6 +3,7 @@
 #include <conio.h>
 #include "render.cpp"
 #include "Wlist.cpp"
+#include "a.h"
 #define WIN32_LEAN_AND_MEAN
 #include <windows.h>
 
@@ -10,6 +11,7 @@ using namespace std;
 
 bool stringContainsChar(std::string str, char c);
 bool isLetter(char c);
+void clearConsole();
 
 enum language {
     EN,
@@ -22,8 +24,8 @@ enum playmode {
 };
 
 int main() {
-    system("chcp 65001");
-    system("cls");
+    SetConsoleOutputCP(CP_UTF8);
+    clearConsole();
     string guess = "";
     string output = "";
     playmode mode = SINGLEPLAYER;
@@ -39,10 +41,10 @@ int main() {
 
     renderAscii(TITLE);
  
-   system("cls");
+   clearConsole();
     while (isRunning) {
         while (isRunning) {
-            system("cls");
+            clearConsole();
             renderAscii(menuStage);
             tmp = _getch();
             if (tmp == '\r') {
@@ -65,9 +67,9 @@ int main() {
         }
         if (!isRunning) break;
         if (mode == MULTIPLAYER) {
-            cout << "Ent;er a word: ";
+            cout << "Enter a word: ";
             cin >> word;
-            system("cls");
+            clearConsole();
         }
         else {
             if (lang == EN) word = NahodneSlovo(nacitajSlova("data/words.txt"));
@@ -97,7 +99,7 @@ int main() {
                 renderAscii(stage);
                 cout << output;
                 tmp = _getch();
-                system("cls");
+                clearConsole();
 
                 if (!isLetter(tmp)) continue;
                 else if (stringContainsChar(guess, tmp)) {
@@ -119,7 +121,7 @@ int main() {
         guess = "";
         output = "";
         x = 0;
-        system("cls");
+        clearConsole();
     }
 }
 
@@ -130,4 +132,40 @@ bool stringContainsChar(string str, char c) {
 
 bool isLetter(char c) {
     return (c >= 'a' && c <= 'z') || (c >= 'A' && c <= 'Z');
+}
+
+void clearConsole() {
+    HANDLE hStdOut;
+    CONSOLE_SCREEN_BUFFER_INFO csbi;
+    DWORD count;
+    DWORD cellCount;
+    COORD homeCoords = { 0, 0 };
+
+    hStdOut = GetStdHandle( STD_OUTPUT_HANDLE );
+    if (hStdOut == INVALID_HANDLE_VALUE) return;
+
+    /* Get the number of cells in the current buffer */
+    if (!GetConsoleScreenBufferInfo( hStdOut, &csbi )) return;
+    cellCount = csbi.dwSize.X *csbi.dwSize.Y;
+
+    /* Fill the entire buffer with spaces */
+    if (!FillConsoleOutputCharacter(
+        hStdOut,
+        (TCHAR) ' ',
+        cellCount,
+        homeCoords,
+        &count
+    )) return;
+
+    /* Fill the entire buffer with the current colors and attributes */
+    if (!FillConsoleOutputAttribute(
+        hStdOut,
+        csbi.wAttributes,
+        cellCount,
+        homeCoords,
+        &count
+    )) return;
+
+    /* Move the cursor home */
+    SetConsoleCursorPosition( hStdOut, homeCoords );
 }
