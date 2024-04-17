@@ -3,6 +3,8 @@
 #include <conio.h>
 #include "render.cpp"
 #include "Wlist.cpp"
+#define WIN32_LEAN_AND_MEAN
+#include <windows.h>
 
 using namespace std;
 
@@ -14,33 +16,63 @@ enum language {
     SK
 };
 
+enum playmode {
+    SINGLEPLAYER,
+    MULTIPLAYER
+};
+
 int main() {
     system("chcp 65001");
     system("cls");
     string guess = "";
     string output = "";
+    playmode mode = SINGLEPLAYER;
+    int base = 5;
+    HangmanStage menuStage = static_cast<HangmanStage>(base);
     string word = "";
     language lang = EN;
     bool guessed = false;
+    bool isRunning = true;
     char tmp;
     int stage = STAGE_1;
+    int x = 0;
 
     renderAscii(TITLE);
-    if (lang == EN) cout << "press ANY BUTTON to start\n";
-    else cout << "stlačte ľubovolnú klávesu pre začatie\n";
-
-    _getch();
-    system("cls");
-
-    while (true) {
-        cout << "choose a language(e/s)\n";
-        tmp = _getch();
-        if (tmp == 'e') lang = EN;
-        else if (tmp == 's') lang = SK;
-        else continue;
-
-        if (lang == EN) word = NahodneSlovo(nacitajSlova("data/words.txt"));
-        else word = NahodneSlovo(nacitajSlova("data/slova.txt"));
+ 
+   system("cls");
+    while (isRunning) {
+        while (isRunning) {
+            system("cls");
+            renderAscii(menuStage);
+            tmp = _getch();
+            if (tmp == '\r') {
+                if (menuStage == TITLE_EN_PLAY || menuStage == TITLE_SK_PLAY) break;
+                if (menuStage == TITLE_EN_QUIT || menuStage == TITLE_SK_QUIT) {
+                    isRunning = false;
+                    break;
+                }
+            }
+            if (GetAsyncKeyState(VK_RIGHT)) {
+                x++;
+                if (x == 3) x = 0;
+                menuStage = static_cast<HangmanStage>(base + x);
+            }
+            if (GetAsyncKeyState(VK_LEFT)) {
+                x--;
+                if (x == -1) x = 2;
+                menuStage = static_cast<HangmanStage>(base + x);
+            }
+        }
+        if (!isRunning) break;
+        if (mode == MULTIPLAYER) {
+            cout << "Ent;er a word: ";
+            cin >> word;
+            system("cls");
+        }
+        else {
+            if (lang == EN) word = NahodneSlovo(nacitajSlova("data/words.txt"));
+            else word = NahodneSlovo(nacitajSlova("data/slova.txt"));
+        }
         
         while(!guessed) {
             guessed = true;
@@ -55,8 +87,7 @@ int main() {
                 if (lang == EN) renderAscii(VICTORY_EN);
                 else renderAscii(VICTORY_SK);
                 break;
-            }
-            else if (stage > STAGE_10) {
+            } else if (stage > STAGE_10) {
                 if (lang == EN) renderAscii(LOSS_EN);
                 else renderAscii(LOSS_SK);
                 break;
@@ -68,11 +99,11 @@ int main() {
                 tmp = _getch();
                 system("cls");
 
-                if (stringContainsChar(guess, tmp)) {
+                if (!isLetter(tmp)) continue;
+                else if (stringContainsChar(guess, tmp)) {
                     if (lang == EN) cout << "You already guessed that letter\n";
                     else cout << "Už si hádal toto písmeno\n";
                 } 
-                else if (isLetter(tmp)) continue;
                 else break;
             } while (stringContainsChar(guess, tmp));
 
@@ -82,27 +113,13 @@ int main() {
         }
 
         std::this_thread::sleep_for(std::chrono::milliseconds(1000));
-
-        if (lang == EN) {
-            cout << "The word was: " << word << "\n";
-            cout << "Do you want to play again? (y/n)\n";
-        } else {
-            cout << "Slovo bolo: " << word << "\n";
-            cout << "Chcete hrať znova? (y/n)\n";
-        }
         
-        while (true) {
-            tmp = _getch();
-            if (tmp == 'n') return 0;
-            else if (tmp == 'y') {
-                guessed = false;
-                stage = STAGE_1;
-                guess = "";
-                output = "";
-                system("cls");
-                break;
-            }
-        }
+        guessed = false;
+        stage = STAGE_1;
+        guess = "";
+        output = "";
+        x = 0;
+        system("cls");
     }
 }
 

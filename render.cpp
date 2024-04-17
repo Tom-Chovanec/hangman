@@ -29,8 +29,6 @@ enum HangmanStage {
 };
 
 //TODO: make a UI
-//      center everything
-//      put the hangman in a box?
 //      restart menu
 //      single/multiplayer option menu  ??
 //      difficulty selector
