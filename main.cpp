@@ -31,6 +31,8 @@ int main() {
     playmode mode = SINGLEPLAYER;
     int difficulty = 0;
     int base = EN;
+    int total = 0;
+    int correct = 0;
     HangmanStage menuStage = static_cast<HangmanStage>(base);
     string word = "";
     bool guessed = false;
@@ -38,6 +40,7 @@ int main() {
     char tmp;
     int stage = STAGE_1;
     int x = 0, y = 0;
+    float z = 0.0f;
 
     renderAscii(TITLE);
  
@@ -47,9 +50,10 @@ int main() {
             clearConsole();
             renderAscii(menuStage);
             if (word != "") {
-                if (base == EN) cout << "Last word was: " << word << endl;
+                if (base == EN) cout << "Last word was: " << word;
                 else cout << "Posledné Slovo bolo:"  << word << endl;
             } 
+            cout << "                        Score: " << correct << "/" << total << endl;
             tmp = _getch();
             if (tmp == '\r') {
                 if (menuStage == TITLE_EN_PLAY || menuStage == TITLE_SK_PLAY) break;
@@ -127,8 +131,8 @@ int main() {
             else word = NahodneSlovo(nacitajSlova("data/slova.txt"), difficulty);
         }
         
-    clearConsole();
-
+        clearConsole();
+        total++;
         while(!guessed) {
             guessed = true;
             for (int i = 0; i < word.size(); i++) {
@@ -141,6 +145,7 @@ int main() {
             if (guessed) {
                 if (base == EN) renderAscii(VICTORY_EN);
                 else renderAscii(VICTORY_SK);
+                correct++;
                 break;
             } else if (stage > STAGE_10) {
                 if (base == EN) renderAscii(LOSS_EN);
@@ -162,7 +167,12 @@ int main() {
                 else break;
             } while (stringContainsChar(guess, tmp));
 
-            if (!stringContainsChar(word, tmp)) stage++;
+            if (difficulty == 0)  {
+                if (!stringContainsChar(word, tmp)) 
+                    stage++;
+            } else if (!stringContainsChar(word, tmp)) 
+                z += 1.5f;
+                stage = STAGE_1 + static_cast<int>(z);
             guess += tmp;
             output = "";
         }
