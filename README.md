@@ -6,7 +6,7 @@
 
 
 # OBESENEC (SK)
-- Jednoduchá hra obesenca
-- Vyber si z dvoch jazykov (Slovenèina, Angliètina)
-- Dve obtianosti, ktoré urèujú dåku slov!
-- Hádajte a 400 slov = 200 v kadom jazyku!
+- JednoduchÃ¡ hra obesenca
+- Vyber si z dvoch jazykov (SlovenÄina, AngliÄtina)
+- Dve obtiaÅ¾nosti, ktorÃ© urÄujÃº dÄºÅ¾ku slov!
+- HÃ¡dajte aÅ¾ 400 slov = 200 v kaÅ¾dom jazyku!
