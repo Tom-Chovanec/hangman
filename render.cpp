@@ -236,6 +236,7 @@ void renderAscii(unsigned int a)
         cout << R"()" << "\n";
         std::this_thread::sleep_for(std::chrono::milliseconds(400));
         clearConsole();
+        
 
         cout << R"()" << "\n";
         cout << R"(╔═══════════════════════════════════════════════════════════════════════════════════════════╗)" << "\n";

@@ -7,11 +7,12 @@
 #define WIN32_LEAN_AND_MEAN
 #include <windows.h>
 
+
 using namespace std;
 
 bool stringContainsChar(std::string str, char c);
 bool isLetter(char c);
-void clearConsole();
+
 
 enum language {
     EN = 2,
@@ -51,15 +52,16 @@ int main() {
             clearConsole();
             renderAscii(menuStage);
             if (word != "") {
-                if (base == EN) cout << "Last word was: " << word;
-                else cout << "Posledné slovo bolo:"  << word ;
+                if (base == EN) {
+                    cout << "Last word was: " << word;
+                    cout << "                        Score: " << correct << "/" << total << endl;
+                }
+                else {
+                    cout << "Posledné slovo bolo: "  << word ;
+                    cout << "                        Skóre: " << correct << "/" << total << endl;
+                }
             } 
             
-            if (base == EN)
-                cout << "                        Score: " << correct << "/" << total << endl;
-            else
-                cout << "                        Skóre: " << correct << "/" << total << endl;
-
             tmp = _getch();
             if (tmp == '\r') {
                 if (menuStage == TITLE_EN_PLAY || menuStage == TITLE_SK_PLAY) break;
