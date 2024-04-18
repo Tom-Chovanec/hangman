@@ -30,7 +30,7 @@ std::string NahodneSlovo(std::vector<std::string> slova, int difficulty) {
             }
         }
     }
-
+    srand(time(0));
     int randomIndex = rand() % filteredWords.size();
     return filteredWords[randomIndex];
 

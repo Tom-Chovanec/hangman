@@ -41,6 +41,7 @@ int main() {
     int stage = STAGE_1;
     int x = 0, y = 0;
     float z = 0.0f;
+    string w = "";
 
     renderAscii(TITLE);
  
@@ -51,9 +52,14 @@ int main() {
             renderAscii(menuStage);
             if (word != "") {
                 if (base == EN) cout << "Last word was: " << word;
-                else cout << "Posledné Slovo bolo:"  << word << endl;
+                else cout << "Posledné slovo bolo:"  << word ;
             } 
-            cout << "                        Score: " << correct << "/" << total << endl;
+            
+            if (base == EN)
+                cout << "                        Score: " << correct << "/" << total << endl;
+            else
+                cout << "                        Skóre: " << correct << "/" << total << endl;
+
             tmp = _getch();
             if (tmp == '\r') {
                 if (menuStage == TITLE_EN_PLAY || menuStage == TITLE_SK_PLAY) break;
@@ -124,7 +130,8 @@ int main() {
         }
         if (!isRunning) break;
         if (mode == MULTIPLAYER) {
-            cout << "Enter a word: ";
+            if (base == EN) cout << "Enter a word: ";
+            else cout << "Zadaj slovo: ";
             cin >> word;
         } else {
             if (base == EN) word = NahodneSlovo(nacitajSlova("data/words.txt"), difficulty);
@@ -138,9 +145,12 @@ int main() {
             for (int i = 0; i < word.size(); i++) {
                 if (!stringContainsChar(guess, word[i])) {
                     guessed = false;
-                    output += '_';
+                    output += " _";
                 }
-                else output += word[i];
+                else {
+                    output += " ";
+                    output += word[i];
+                }
             }
             if (guessed) {
                 if (base == EN) renderAscii(VICTORY_EN);
@@ -155,23 +165,27 @@ int main() {
 
             do {
                 renderAscii(stage);
-                cout << output;
+                cout << output << "            " << w << "\n";
+                tmp = ' ';
+                while (!isLetter(tmp)) {
                 tmp = _getch();
+                }
                 clearConsole();
-
+                w = "";
                 if (!isLetter(tmp)) continue;
                 else if (stringContainsChar(guess, tmp)) {
-                    if (base == EN) cout << "You already guessed that letter\n";
-                    else cout << "Už si hádal toto písmeno\n";
+                    if (base == EN) w = "You already guessed this letter\n";
+                    else w = "Už si hádal toto písmeno\n";
                 } 
                 else break;
             } while (stringContainsChar(guess, tmp));
 
             if (difficulty == 0)  {
                 if (!stringContainsChar(word, tmp)) 
-                    stage++;
+                    z += 1.0f;
+                    stage = STAGE_1 + static_cast<int>(z);
             } else if (!stringContainsChar(word, tmp)) 
-                z += 1.5f;
+                z += 1.0f;
                 stage = STAGE_1 + static_cast<int>(z);
             guess += tmp;
             output = "";
@@ -184,6 +198,7 @@ int main() {
         guess = "";
         output = "";
         x = 0;
+        z = 0;
         clearConsole();
     }
 }
