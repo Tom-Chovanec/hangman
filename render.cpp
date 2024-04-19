@@ -31,6 +31,9 @@ enum HangmanStage {
     SETTINGS_SK_DIFF_HARD,
     SETTINGS_SK_EXIT,
 
+    RULES_EN,
+    RULES_SK,
+
     VICTORY_EN,
     LOSS_EN,
 
@@ -968,9 +971,68 @@ void renderAscii(unsigned int a)
 
 
 
+    case RULES_EN:
+        cout << R"()" << "\n";
+        cout << R"(╔═══════════════════════════════════════════════════════════════════════════════════════════╗)" << "\n";
+        cout << R"(║                                 ____          _                                           ║)" << "\n";
+        cout << R"(║                                |  _ \  _   _ | |  ___   ___                               ║)" << "\n";
+        cout << R"(║                                | |_) || | | || | / _ \ / __|                              ║)" << "\n";
+        cout << R"(║                                |  _ < | |_| || ||  __/ \__ \                              ║)" << "\n";
+        cout << R"(║                                |_| \_\ \__,_||_| \___| |___/                              ║)" << "\n";
+        cout << R"(║                                                                                           ║)" << "\n";
+        cout << R"(║                                                                                           ║)" << "\n";
+        cout << R"(║                                                                                           ║)" << "\n";
+        cout << R"(║                       - Press a letter key to guess that letter                           ║)" << "\n";
+        cout << R"(║               - Every correct guess fills in all appearances of that letter               ║)" << "\n";
+        cout << R"(║                             - You can only make 9 mistakes                                ║)" << "\n";
+        cout << R"(║                           - After 9 mistakes, it's game over!                             ║)" << "\n";
+        cout << R"(║                           - Word length varies by difficulty                              ║)" << "\n";
+        cout << R"(║                - In multiplayer, your opponent inputs the word for you to guess           ║)" << "\n";
+        cout << R"(║                                                                                           ║)" << "\n";
+        cout << R"(║                                                                                           ║)" << "\n";
+        cout << R"(║                                                                                           ║)" << "\n";
+        cout << R"(║                                      >┏━━━━━━━━━━━┓<                                      ║)" << "\n";
+        cout << R"(║                                      >┃   CLOSE   ┃<                                      ║)" << "\n";
+        cout << R"(║                                      >┗━━━━━━━━━━━┛<                                      ║)" << "\n";
+        cout << R"(║                                                                                           ║)" << "\n";
+        cout << R"(║                                                                                           ║)" << "\n";
+        cout << R"(╚═══════════════════════════════════════════════════════════════════════════════════════════╝)" << "\n";
+        cout << R"()" << "\n";
+        cout << R"()" << "\n";
+        while (_kbhit()) _getch();
+        break;
 
 
-
+    case RULES_SK:
+        cout << R"()" << "\n";
+        cout << R"(╔═══════════════════════════════════════════════════════════════════════════════════════════╗)" << "\n";
+        cout << R"(║                            ____                   _     _ _   __                          ║)" << "\n";
+        cout << R"(║                            |  _ \ _ __ __ ___   _(_) __| | | /_/_                         ║)" << "\n";
+        cout << R"(║                            | |_) | '__/ _` \ \ / / |/ _` | |/ _` |                        ║)" << "\n";
+        cout << R"(║                            |  __/| | | (_| |\ V /| | (_| | | (_| |                        ║)" << "\n";
+        cout << R"(║                            |_|   |_|  \__,_| \_/ |_|\__,_|_|\__,_|                        ║)" << "\n";
+        cout << R"(║                                                                                           ║)" << "\n";
+        cout << R"(║                                                                                           ║)" << "\n";
+        cout << R"(║                                                                                           ║)" << "\n";
+        cout << R"(║                           - Stlačte klávesu aby ste hádali písmeno                        ║)" << "\n";
+        cout << R"(║                   - Každý správny odhad odhalí písmeno, ktoré ste zadali                  ║)" << "\n";
+        cout << R"(║                                - Môžete urobiť iba 9 chýb                                 ║)" << "\n";
+        cout << R"(║                         - Po 9 chybách, hra skončila a prehrávate!                        ║)" << "\n";
+        cout << R"(║                            - Dĺžka slov závisí od obtiažnosti                             ║)" << "\n";
+        cout << R"(║                 - Pri dvoch hráčoch, váš oponent zadáva slovo, ktoré vy hádate            ║)" << "\n";
+        cout << R"(║                                                                                           ║)" << "\n";
+        cout << R"(║                                                                                           ║)" << "\n";
+        cout << R"(║                                                                                           ║)" << "\n";
+        cout << R"(║                                     >┏━━━━━━━━━━━━━┓<                                     ║)" << "\n";
+        cout << R"(║                                     >┃   ZAVRIEŤ   ┃<                                     ║)" << "\n";
+        cout << R"(║                                     >┗━━━━━━━━━━━━━┛<                                     ║)" << "\n";
+        cout << R"(║                                                                                           ║)" << "\n";
+        cout << R"(║                                                                                           ║)" << "\n";
+        cout << R"(╚═══════════════════════════════════════════════════════════════════════════════════════════╝)" << "\n";
+        cout << R"()" << "\n";
+        cout << R"()" << "\n";
+        while (_kbhit()) _getch();
+        break;
 
 
 
