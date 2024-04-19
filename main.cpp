@@ -42,7 +42,7 @@ int main() {
     int stage = STAGE_1;
     int x = 0, y = 0;
     float z = 0.0f;
-    string w = "";
+    string w = "", v = "";
 
     renderAscii(TITLE);
  
@@ -99,10 +99,6 @@ int main() {
                         base = SK;
                         menuStage = static_cast<HangmanStage>(base + 5);
                     }
-fatal: User cancelled dialog.
-bash: line 1: /dev/tty: No such device or address
-error: failed to execute prompt script (exit code 1)
-fatal: could not read Username for 'https://github.com': No such file or directory
                     if (menuStage == SETTINGS_EN_DIFF_EASY || menuStage == SETTINGS_SK_DIFF_EASY) difficulty = 0;
                     if (menuStage == SETTINGS_EN_DIFF_HARD || menuStage == SETTINGS_SK_DIFF_HARD) difficulty = 1;
                     if (menuStage == SETTINGS_EN_EXIT || menuStage == SETTINGS_SK_EXIT) {
@@ -173,17 +169,25 @@ fatal: could not read Username for 'https://github.com': No such file or directo
 
             do {
                 renderAscii(stage);
-                cout << output << "            " << w << "\n";
                 tmp = ' ';
+                cout << output << "            " << w << "\n";
                 while (!isLetter(tmp)) {
-                tmp = _getch();
+                    tmp = _getch();
                 }
                 clearConsole();
                 w = "";
+                if (base == EN) w += "Letters used: ";
+                else w += "Použité písmená: ";
+                for (int i = 0; i < output.length(); i++) {
+                    if (output[i] != '_' || output[i] != ' ')
+                        w += output[i];
+                    
+                }
+                w += "\n";
                 if (!isLetter(tmp)) continue;
                 else if (stringContainsChar(guess, tmp)) {
-                    if (base == EN) w = "You already guessed this letter\n";
-                    else w = "Už si hádal toto písmeno\n";
+                    if (base == EN) w += "You already guessed this letter\n";
+                    else w += "Už si hádal toto písmeno\n";
                 } 
                 else break;
             } while (stringContainsChar(guess, tmp));
