@@ -37,6 +37,7 @@ int main() {
     HangmanStage menuStage = static_cast<HangmanStage>(base);
     string word = "";
     bool guessed = false;
+    bool seenRules = false;
     bool isRunning = true;
     char tmp;
     int stage = STAGE_1;
@@ -132,6 +133,12 @@ int main() {
 
         }
         if (!isRunning) break;
+        if (!seenRules) {
+            if (base == EN) renderAscii(RULES_EN);
+            else renderAscii(RULES_SK);
+            seenRules = true;
+            cin.get();
+        }
         if (mode == MULTIPLAYER) {
             if (base == EN) cout << "Enter a word: ";
             else cout << "Zadaj slovo: ";
@@ -176,14 +183,6 @@ int main() {
                 }
                 clearConsole();
                 w = "";
-                if (base == EN) w += "Letters used: ";
-                else w += "Použité písmená: ";
-                for (int i = 0; i < output.length(); i++) {
-                    if (output[i] != '_' || output[i] != ' ')
-                        w += output[i];
-                    
-                }
-                w += "\n";
                 if (!isLetter(tmp)) continue;
                 else if (stringContainsChar(guess, tmp)) {
                     if (base == EN) w += "You already guessed this letter\n";
