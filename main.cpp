@@ -48,7 +48,7 @@ int main() {
  
    clearConsole();
     while (isRunning) {
-        while (isRunning) {
+        while (isRunning) { //render menu
             clearConsole();
             renderAscii(menuStage);
             if (word != "") {
@@ -62,6 +62,8 @@ int main() {
                 }
             } 
             
+            //handle all the menu switching and confirming
+
             tmp = _getch();
             if (tmp == '\r') {
                 if (menuStage == TITLE_EN_PLAY || menuStage == TITLE_SK_PLAY) break;
@@ -97,7 +99,10 @@ int main() {
                         base = SK;
                         menuStage = static_cast<HangmanStage>(base + 5);
                     }
-
+fatal: User cancelled dialog.
+bash: line 1: /dev/tty: No such device or address
+error: failed to execute prompt script (exit code 1)
+fatal: could not read Username for 'https://github.com': No such file or directory
                     if (menuStage == SETTINGS_EN_DIFF_EASY || menuStage == SETTINGS_SK_DIFF_EASY) difficulty = 0;
                     if (menuStage == SETTINGS_EN_DIFF_HARD || menuStage == SETTINGS_SK_DIFF_HARD) difficulty = 1;
                     if (menuStage == SETTINGS_EN_EXIT || menuStage == SETTINGS_SK_EXIT) {
@@ -142,6 +147,7 @@ int main() {
         
         clearConsole();
         total++;
+        //main loop
         while(!guessed) {
             guessed = true;
             for (int i = 0; i < word.size(); i++) {
@@ -192,7 +198,7 @@ int main() {
             guess += tmp;
             output = "";
         }
-
+        //reset all variables
         std::this_thread::sleep_for(std::chrono::milliseconds(1000));
         
         guessed = false;
