@@ -20,12 +20,12 @@ std::string NahodneSlovo(std::vector<std::string> slova, int difficulty) {
 
     for (const auto& word : slova) {
         if (difficulty == 0) {
-            if (word.length() < 5) {
+            if (word.length() <= 5) {
                 filteredWords.push_back(word);
             }
         } else 
         if (difficulty == 1) {
-            if (word.length() > 5) {
+            if (word.length() >= 5) {
                 filteredWords.push_back(word);
             }
         }
